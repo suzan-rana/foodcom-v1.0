@@ -1,4 +1,5 @@
 import { Field, ID, ObjectType } from '@nestjs/graphql';
+import { RoleEnum } from 'src/constants';
 import {
   BaseEntity,
   Column,
@@ -38,4 +39,10 @@ export class User extends BaseEntity {
   @UpdateDateColumn()
   @Field()
   updated_at: Date;
+
+  @Column({
+    default: RoleEnum.USER,
+  })
+  @Field(() => [RoleEnum])
+  role: RoleEnum;
 }

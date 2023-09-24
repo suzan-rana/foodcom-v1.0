@@ -9,6 +9,7 @@ import { jwtConstants } from './auth/constants';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ormConfig } from './typeorm.config';
 import { DataSource } from 'typeorm';
+import { ProductsModule } from './products/products.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { DataSource } from 'typeorm';
     TypeOrmModule.forRootAsync({ useFactory: () => ormConfig }),
     UsersModule,
     AuthModule,
+    ProductsModule,
   ],
 })
 export class AppModule {

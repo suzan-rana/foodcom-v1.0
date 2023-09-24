@@ -1,6 +1,7 @@
 import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
 import { UsersService } from './users.service';
 import { User } from './entities/user.entity';
+import { SignupResponse } from 'src/auth/dto/signup-response.dto';
 
 @Resolver(() => User)
 export class UsersResolver {
@@ -13,8 +14,7 @@ export class UsersResolver {
 
   @Query(() => [User], { name: 'users' })
   findAll() {
-    return {};
-    // return this.usersService.findAll();
+    return this.usersService.findAll();
   }
 
   // @Query(() => User, { name: 'user' })

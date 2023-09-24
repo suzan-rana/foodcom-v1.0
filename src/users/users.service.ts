@@ -15,7 +15,11 @@ export class UsersService {
     @InjectRepository(User) private userRepository: Repository<User>,
   ) {}
 
-  async findOne(email: string): Promise<any> {
+  async findAll() {
+    return this.userRepository.find();
+  }
+
+  async findOne(email: string): Promise<User> {
     return this.userRepository.findOne({
       where: {
         email,
@@ -29,7 +33,7 @@ export class UsersService {
       },
     });
     if (checkEmail) {
-       throw new BadGatewayException(ALREADY_EXITS('User'));
+      throw new BadGatewayException(ALREADY_EXITS('User'));
     }
     try {
       // create the user
