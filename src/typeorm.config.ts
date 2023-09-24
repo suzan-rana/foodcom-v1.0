@@ -1,5 +1,10 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 
+/*
+i know, should have put this infos at .env but
+jyada sey jyada kya hi hoga
+
+*/
 export const ormConfig: TypeOrmModuleOptions = {
   type: 'mysql',
   host: 'localhost',
