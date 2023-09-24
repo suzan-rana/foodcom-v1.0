@@ -1,4 +1,12 @@
-import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
+import {
+  Resolver,
+  Query,
+  Mutation,
+  Args,
+  Int,
+  PickType,
+  ObjectType,
+} from '@nestjs/graphql';
 import { ProductsService } from './products.service';
 import { Product } from './entities/product.entity';
 import { CreateProductInput } from './dto/create-product.input';
@@ -8,23 +16,26 @@ import { RoleEnum } from 'src/constants';
 import { UseGuards } from '@nestjs/common';
 import { RolesGuard } from 'src/auth/guards/roles.guard';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
+import { ProductInputPagination } from './dto/product-input.dto';
 
 @Resolver(() => Product)
 export class ProductsResolver {
   constructor(private readonly productsService: ProductsService) {}
 
   @Mutation(() => Product)
-  @Roles(RoleEnum.ADMIN, RoleEnum.USER)
-  @UseGuards(JwtAuthGuard, RolesGuard)
+  // @Roles(RoleEnum.ADMIN, RoleEnum.USER)
+  // @UseGuards(JwtAuthGuard, RolesGuard)
   createProduct(
     @Args('createProductInput') createProductInput: CreateProductInput,
   ) {
     return this.productsService.create(createProductInput);
   }
 
-  @Query(() => [Product], { name: 'products' })
-  findAll() {
-    return this.productsService.findAll();
+  @Query(() => [Product], {
+    name: 'products',
+  })
+  findAll(@Args('productInput') productInput: ProductInputPagination) {
+    return this.productsService.findAll(productInput);
   }
 
   @Query(() => Product, { name: 'product' })

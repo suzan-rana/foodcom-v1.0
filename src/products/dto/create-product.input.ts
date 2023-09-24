@@ -4,6 +4,6 @@ import { Product } from '../entities/product.entity';
 @InputType()
 export class CreateProductInput extends PickType(
   Product,
-  ['name', 'price', 'description'] as const,
+  ['name', 'price', 'description', 'category_id', 'is_veg'] as const,
   InputType,
 ) {}
