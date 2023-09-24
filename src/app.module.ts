@@ -10,6 +10,7 @@ import { ormConfig } from './typeorm.config';
 import { DataSource } from 'typeorm';
 import { ProductsModule } from './products/products.module';
 import { jwtConstants } from './constants';
+import { CategoriesModule } from './categories/categories.module';
 
 @Module({
   imports: [
@@ -37,6 +38,7 @@ import { jwtConstants } from './constants';
     UsersModule,
     AuthModule,
     ProductsModule,
+    CategoriesModule,
   ],
 })
 export class AppModule {
