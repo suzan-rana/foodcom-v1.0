@@ -21,10 +21,12 @@ export class AuthService {
   }
 
   async login(loginUserInput: LoginUserInput) {
+    const user = await this.usersService.findOne(loginUserInput.email);
     const payload = {
       username: loginUserInput.email,
+      id: user.id,
+      role: user.role,
     };
-    const user = await this.usersService.findOne(loginUserInput.email);
     delete user['password'];
     return {
       access_token: await this.jwtService.signAsync(payload), // use jwt here

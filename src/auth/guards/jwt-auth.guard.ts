@@ -6,8 +6,8 @@ import {
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { Request } from 'express';
-import { jwtConstants } from './constants';
 import { Context, GqlExecutionContext } from '@nestjs/graphql';
+import { jwtConstants } from 'src/constants';
 
 @Injectable()
 export class JwtAuthGuard implements CanActivate {
