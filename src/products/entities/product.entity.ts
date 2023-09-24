@@ -1,4 +1,4 @@
-import { ObjectType, Field, Int, ID } from '@nestjs/graphql';
+import { ObjectType, Field, Float, ID } from '@nestjs/graphql';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('products')
@@ -17,6 +17,12 @@ export class Product {
   description: string;
 
   @Column()
-  @Field()
+  @Field(() => Float)
   price: number;
+
+  @Column({
+    type: 'boolean',
+  })
+  @Field(() => Boolean)
+  is_veg: boolean;
 }
