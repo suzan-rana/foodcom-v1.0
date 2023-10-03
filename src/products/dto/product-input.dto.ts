@@ -1,13 +1,13 @@
 import { Field, InputType } from '@nestjs/graphql';
 
-export const ProductSort = {
-  ID_ASC: 'ID_ASC',
-  ID_DESC: 'ID_DESC',
-  NAME_ASC: 'NAME_ASC',
-  NAME_DESC: 'NAME_DESC',
-  PRICE_ASC: 'PRICE_ASC',
-  PRICE_DESC: 'PRICE_DESC',
-} as const;
+export enum ProductSort {
+  ID_ASC = 'ID_ASC',
+  ID_DESC = 'ID_DESC',
+  NAME_ASC = 'NAME_ASC',
+  NAME_DESC = 'NAME_DESC',
+  PRICE_ASC = 'PRICE_ASC',
+  PRICE_DESC = 'PRICE_DESC',
+}
 
 type MakeUnionType<TObject extends Object> = keyof TObject;
 type TProductSort = MakeUnionType<typeof ProductSort>;

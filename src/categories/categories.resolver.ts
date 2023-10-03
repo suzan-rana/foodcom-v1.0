@@ -14,8 +14,8 @@ export class CategoriesResolver {
   constructor(private readonly categoriesService: CategoriesService) {}
 
   @Mutation(() => Category)
-  // @Roles(RoleEnum.ADMIN)
-  // @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles(RoleEnum.ADMIN)
+  @UseGuards(JwtAuthGuard, RolesGuard)
   createCategory(
     @Args('createCategoryInput') createCategoryInput: CreateCategoryInput,
   ) {

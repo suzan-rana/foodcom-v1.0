@@ -20,7 +20,7 @@ export class ProductsService {
   async findAll(productInput: ProductInputPagination) {
     const qb = this.productRepository.createQueryBuilder('product');
 
-    switch (productInput.sort as any) {
+    switch (productInput.sort) {
       case 'ID_ASC': {
         qb.orderBy('id', 'ASC');
         break;
@@ -47,8 +47,8 @@ export class ProductsService {
       }
     }
     if (productInput.search_text) {
-      qb.where('product.name LIKE :search_text1', {
-        search_text1: `%${productInput.search_text}%`,
+      qb.where('product.name LIKE :search_text', {
+        search_text: `%${productInput.search_text}%`,
       });
     }
     return await qb.skip(productInput.skip).take(productInput.take).getMany();
